@@ -13,6 +13,6 @@ script:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - CLAIR_ADDR=http://localhost CLAIR_OUTPUT=High CLAIR_THRESHOLD=10 klar avhost/docker-dendrite:latest   
 
-success:
+after_success:
   - docker push avhost/docker-dendrite
 
