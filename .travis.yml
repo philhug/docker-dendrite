@@ -15,7 +15,7 @@ script:
   - CLAIR_ADDR=http://localhost CLAIR_OUTPUT=High CLAIR_THRESHOLD=10 klar avhost/docker-dendrite:clair 
 
 after_success:
-  - docker build -t avhost/docker-dendrite
+  - docker build -t avhost/docker-dendrite .
   - docker push avhost/docker-dendrite
   
 
