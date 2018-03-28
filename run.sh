@@ -8,6 +8,16 @@ openssl req -x509 -newkey rsa:4096 -keyout /etc/dendrite/server.key -out /etc/de
 
 ./bin/generate-keys -private-key /etc/dendrite/matrix_key.pem
 
+if [ "$FUNCTION" == "MONOLITH" ] 
+then
+  ./bin/dendrite-monolith-server \
+  -http-bind-address 0.0.0.0:8008 \
+  -https-bind-address 0.0.0.0:8448 \
+  -tls-cert /etc/dendrite/server.crt \
+  -tls-key /etc/dendrite/server.key \
+  --config=/config/config.yaml
+fi
+
 if [ "$FUNCTION" == "CLIENT_PROXY" ] 
 then
   ./bin/client-api-proxy \
